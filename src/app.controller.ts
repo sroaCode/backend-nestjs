@@ -7,6 +7,18 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return 'Hola mundo!'
+  }
+
+  //Creando nuevos End Points
+  //http://localhost:3000/nuevo
+  @Get('nuevo')
+  newEndPoint(){
+    return "Yo soy nuevo";
+  }
+
+  @Get('/ruta')
+  hello(){
+    return "nueva ruta";
   }
 }
