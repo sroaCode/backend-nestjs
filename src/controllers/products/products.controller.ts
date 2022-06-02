@@ -11,28 +11,29 @@ export class ProductsController {
 
     //Creando nuevos End Points
     //http://localhost:3000/nuevo
-    @Get('nuevo')
+    @Get('/NuevoEndPoint')
     newEndPoint() {
-        return "Yo soy nuevo";
+        return "Nuevo end point";
     }
 
     @Get('/ruta')
-    hello() {
+    route() {
         return "nueva ruta";
     }
 
-    //recibir Paramteros
-    @Get('/:productId')
-    getProduct(@Param('productId') productId: string) {
-        return `Product ${productId}`;
-    }
-
     //Parametros de tipo Query
-    @Get("parametrosQuery")
-    getProducts(
+    //Ejemplo -> http://localhost:3000/products/filtrado?limit=12&offset=23&marca=Gucci
+    @Get("/filtrado")
+    getFilter(
         @Query('limit') limit = 100, //valor por defecto en casi de no enviar el limit
         @Query('offset') offset = 100,
         @Query('marca') marca: string) {
         return `products: limit => ${limit} offset => ${offset} y la marca es = ${marca}`
+    }
+
+    //recibir Paramteros
+    @Get('/:productId')
+    getProductId(@Param('productId') productId: string) {
+        return `Product ${productId}`;
     }
 }
