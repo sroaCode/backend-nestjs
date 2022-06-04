@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query, Post, Body } from '@nestjs/common';
 
 @Controller('products')
 export class ProductsController {
@@ -6,19 +6,18 @@ export class ProductsController {
     //Inicio
     @Get('')
     Inicio(){
-        return "Inicio";
-    }
-
-    //Creando nuevos End Points
-    //http://localhost:3000/nuevo
-    @Get('/NuevoEndPoint')
-    newEndPoint() {
-        return "Nuevo end point";
+        return {
+            message:"Inicio",
+            endPoint:"products/"
+        }
     }
 
     @Get('/ruta')
     route() {
-        return "nueva ruta";
+        return {
+            message:"nueva ruta",
+            endPoint:"products/ruta"
+        }
     }
 
     //Parametros de tipo Query
@@ -28,12 +27,29 @@ export class ProductsController {
         @Query('limit') limit = 100, //valor por defecto en casi de no enviar el limit
         @Query('offset') offset = 100,
         @Query('marca') marca: string) {
-        return `products: limit => ${limit} offset => ${offset} y la marca es = ${marca}`
+        return {
+            message: `Filtrado exitoso`,
+            limit: limit,
+            offset: offset,
+            marca: marca,
+        }
     }
 
     //recibir Paramteros
     @Get('/:productId')
     getProductId(@Param('productId') productId: string) {
-        return `Product ${productId}`;
+        return {
+            message:"productId",
+            endPoint:"products/:productId",
+            productId:productId
+        }
+    }
+
+    @Post()
+    create(@Body() payload: any){
+        return {
+            message: "created xdxd",
+            payload: payload,
+        };
     }
 }

@@ -8,7 +8,13 @@ export class CategoriesController {
     getCategories(
         @Param('categoriesId') categoriesId: string,
         @Param('productId') productId: string) {
-        return `Categories ${categoriesId} and productId ${productId}`;
+        return {
+            message:"recibido con exito",
+            endPoint:"/categoriesId/:categoriesId/product/:productId",
+            categoriesId:categoriesId,
+            productId:productId,
+        }
+        
     }
 
 }
